@@ -1,0 +1,1003 @@
+<!doctype html>
+<html>
+<style>
+/*
+ * Copyright (c) 2012-2013 Thibaut Courouble
+ * http://www.cssflow.com
+ * Licensed under the MIT License
+ *
+ * Sass/SCSS source: https://goo.gl/UhXKg
+ * PSD by Vin Thomas: https://goo.gl/n1M2e
+ */
+
+body {
+  font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  color: #404040;
+  background: #2a2a2a;
+}
+
+/*
+.container {
+  margin: 60px auto;
+  width: 600px;
+  text-align: center;
+}
+*/
+
+.container {
+  margin: 40px auto;
+  width: 95%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.container .progress {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.containerWordCloudChart {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.progress {
+  margin: 0 auto;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar {
+  height: 16px;
+  border-radius: 4px;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  -webkit-transition: 0.4s linear;
+  -moz-transition: 0.4s linear;
+  -o-transition: 0.4s linear;
+  transition: 0.4s linear;
+  -webkit-transition-property: width, background-color;
+  -moz-transition-property: width, background-color;
+  -o-transition-property: width, background-color;
+  transition-property: width, background-color;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/*
+ * Note: using adjacent or general sibling selectors combined with
+ *       pseudo classes doesn't work in Safari 5.0 and Chrome 12.
+ *       See this article for more info and a potential fix:
+ *       https://css-tricks.com/webkit-sibling-bug/
+ */
+
+#currentBar:checked ~ .progress > .progress-bar {
+  width: 1%;
+  background-color: #FF5B00;
+}
+
+#goalBar:checked ~ .progress > .progress-bar {
+  width: 100%;
+  background-color: #558b2f;
+}
+
+.radio {
+  display: none;
+}
+
+.label {
+  display: inline-block;
+  margin: 0 5px 20px;
+  padding: 3px 8px;
+  /* color: #aaa; */
+  color: #fff;
+  text-shadow: 0 1px black;
+  border-radius: 3px;
+  cursor: pointer;
+  max-width: 100px;
+}
+
+.hiddenLabel {
+  display: none;
+  margin: 0 5px 20px;
+  padding: 3px 8px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.radio:checked + .label {
+  color: white;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* FAQ */
+.containerFAQ {
+    margin: 0 auto;
+    padding: 20px 0 20px;
+    width: 90%;
+}
+
+.acc h6 {
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.acc h6:after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.acc.active h6:after {
+	content: '-';
+}
+
+.content {
+    background-color: #2a2a2a;
+    display: none;
+}
+
+.content-inner {
+    padding: 5px;
+}
+
+.content * {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+.acc {
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.dl {
+  margin: 0 auto;
+  /*padding: 20px 0 20px;*/
+  width: 90%;
+}
+
+.dt {
+  margin: 0 5px 5px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dd {
+  margin: 0 15px 5px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+  text-align: left;
+}
+
+/* Links effect */
+a:link {color:#aaa;background:transparent;}
+a:visited {color:#aaa;background:transparent;}
+a:active {color:red;background:transparent;}
+a:hover {text-decoration:none;color:orange;font-weight:bold;}
+
+/* Custom resizable font */
+
+p.custom {
+  margin: 0 20px 20px;
+  padding: 3px 8px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+}
+
+h4.custom {
+  margin: 0 20px 20px;
+  padding: 3px 8px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+}
+
+h5.custom {
+  /*margin: 0 20px 20px;
+  padding: 3px 8px;*/
+  color: #aaa;
+  text-shadow: 0 1px black;
+}
+
+h6.custom {
+  background-color: rgba(0,0,0,0.2);
+  color: #aaa;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+dd.custom {
+  margin: 0 15px 5px;
+  color: #aaa;
+  text-shadow: 0 1px black;
+  text-align: left;
+}
+
+btn {
+  cursor: pointer;
+  background-color: #2a2a2a;
+}
+
+btn:hover {
+  background-color: red;
+}
+
+svg.idea {
+        text-align: center;
+        margin: auto;
+}
+
+svg.heart {
+        text-align: center;
+        margin: auto;
+}
+
+svg.cart {
+        text-align: center;
+        margin: auto;
+}
+
+svg.notification {
+        text-align: center;
+        margin: auto;
+}
+
+/* If the screen size is 601px wide or more, set the font-size of <p>, <h4>, <h5> */
+@media screen and (min-width: 601px) {
+  p.custom {
+    font-size: 12px;
+  }
+  h4.custom {
+    font-size: 25px;
+  }
+  h5.custom {
+    font-size: 15px;
+  }
+  h6.custom {
+    font-size: 15px;
+  }
+  dd.custom {
+    font-size: 12px;
+  }
+  svg.idea {
+          width: 20px;
+          height: 20px;
+  }
+  svg.heart {
+          width: 15px;
+          height: 15px;
+  }
+  svg.notification {
+          width: 15px;
+          height: 15px;
+  }
+}
+/* If the screen size is 600px wide or less, set the font-size of <p>, <h4>, <h5> */
+@media screen and (max-width: 600px) {
+  p.custom {
+    font-size: 11px;
+  }
+  h4.custom {
+    font-size: 18px;
+  }
+  h5.custom {
+    font-size: 12px;
+  }
+  h6.custom {
+    font-size: 12px;
+  }
+  dd.custom {
+    font-size: 11px;
+  }
+  svg.idea {
+          width: 15px;
+          height: 15px;
+  }
+
+  svg.heart {
+          width: 12px;
+          height: 12px;
+  }
+  svg.notification {
+          width: 12px;
+          height: 12px;
+  }
+}
+
+/* End of custom font*/
+
+/* Icon heart */
+
+#icon-hearbeat {
+        -webkit-animation-name: heartbeat2;
+        animation-name: heartbeat2;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+}
+
+@-webkit-keyframes heartbeat2 {
+        from {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-transform-origin: center center;
+                transform-origin: center center;
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+
+        10% {
+                -webkit-transform: scale(0.91);
+                transform: scale(0.91);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+        }
+
+        17% {
+                -webkit-transform: scale(0.98);
+                transform: scale(0.98);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+
+        33% {
+                -webkit-transform: scale(0.87);
+                transform: scale(0.87);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+        }
+
+        45% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+}
+
+@keyframes heartbeat2 {
+        from {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-transform-origin: center center;
+                transform-origin: center center;
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+
+        10% {
+                -webkit-transform: scale(0.91);
+                transform: scale(0.91);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+        }
+
+        17% {
+                -webkit-transform: scale(0.98);
+                transform: scale(0.98);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+
+        33% {
+                -webkit-transform: scale(0.87);
+                transform: scale(0.87);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+        }
+
+        45% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        }
+}
+
+/* End of icon heart */
+
+/* Icon idea */
+
+#icon-idea .blinking-light {
+  -webkit-animation: blinking-light 2s ease-out 1s infinite forwards;
+          animation: blinking-light 2s ease-out 1s infinite forwards;
+}
+
+@-webkit-keyframes blinking-light {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes blinking-light {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+/* End of icon idea */
+
+/* Icon notification */
+
+#icon-notification {
+  -webkit-animation: ring 4s .7s ease-in-out infinite;
+  animation: ring 4s .7s ease-in-out infinite;
+  -webkit-transform-origin: 50% 4px;
+  transform-origin: 50% 4px;
+}
+
+@-webkit-keyframes ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  1% {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  3% {
+    -webkit-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+
+  5% {
+    -webkit-transform: rotate(34deg);
+    transform: rotate(34deg);
+  }
+
+  7% {
+    -webkit-transform: rotate(-32deg);
+    transform: rotate(-32deg);
+  }
+
+  9% {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  11% {
+    -webkit-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+
+  13% {
+    -webkit-transform: rotate(26deg);
+    transform: rotate(26deg);
+  }
+
+  15% {
+    -webkit-transform: rotate(-24deg);
+    transform: rotate(-24deg);
+  }
+
+  17% {
+    -webkit-transform: rotate(22deg);
+    transform: rotate(22deg);
+  }
+
+  19% {
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+  }
+
+  21% {
+    -webkit-transform: rotate(18deg);
+    transform: rotate(18deg);
+  }
+
+  23% {
+    -webkit-transform: rotate(-16deg);
+    transform: rotate(-16deg);
+  }
+
+  25% {
+    -webkit-transform: rotate(14deg);
+    transform: rotate(14deg);
+  }
+
+  27% {
+    -webkit-transform: rotate(-12deg);
+    transform: rotate(-12deg);
+  }
+
+  29% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+
+  31% {
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+
+  33% {
+    -webkit-transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+
+  35% {
+    -webkit-transform: rotate(-4deg);
+    transform: rotate(-4deg);
+  }
+
+  37% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+
+  39% {
+    -webkit-transform: rotate(-1deg);
+    transform: rotate(-1deg);
+  }
+
+  41% {
+    -webkit-transform: rotate(1deg);
+    transform: rotate(1deg);
+  }
+
+  43% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+}
+
+@keyframes ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  1% {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  3% {
+    -webkit-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+
+  5% {
+    -webkit-transform: rotate(34deg);
+    transform: rotate(34deg);
+  }
+
+  7% {
+    -webkit-transform: rotate(-32deg);
+    transform: rotate(-32deg);
+  }
+
+  9% {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  11% {
+    -webkit-transform: rotate(-28deg);
+    transform: rotate(-28deg);
+  }
+
+  13% {
+    -webkit-transform: rotate(26deg);
+    transform: rotate(26deg);
+  }
+
+  15% {
+    -webkit-transform: rotate(-24deg);
+    transform: rotate(-24deg);
+  }
+
+  17% {
+    -webkit-transform: rotate(22deg);
+    transform: rotate(22deg);
+  }
+
+  19% {
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+  }
+
+  21% {
+    -webkit-transform: rotate(18deg);
+    transform: rotate(18deg);
+  }
+
+  23% {
+    -webkit-transform: rotate(-16deg);
+    transform: rotate(-16deg);
+  }
+
+  25% {
+    -webkit-transform: rotate(14deg);
+    transform: rotate(14deg);
+  }
+
+  27% {
+    -webkit-transform: rotate(-12deg);
+    transform: rotate(-12deg);
+  }
+
+  29% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+
+  31% {
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+
+  33% {
+    -webkit-transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+
+  35% {
+    -webkit-transform: rotate(-4deg);
+    transform: rotate(-4deg);
+  }
+
+  37% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+
+  39% {
+    -webkit-transform: rotate(-1deg);
+    transform: rotate(-1deg);
+  }
+
+  41% {
+    -webkit-transform: rotate(1deg);
+    transform: rotate(1deg);
+  }
+
+  43% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+}
+
+/* End of icon notification */
+
+</style>
+
+<!--hide and show on radio click-->
+<script src="js/hideAndShowRadioClick.js"></script>
+
+<!-- Language choice script -->
+<script src="js/language.js"></script>
+
+<!-- questo dovrebbe permettere all'oggetto di stabilire da solo l'ampiezza -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container">
+
+  <!-- Language choice -->
+  <script type="text/javascript" src="langChange.js"></script>
+  <!-- Show only english version -->
+	<style type="text/css">
+    	*[lang=en] { display : block }
+    	*[lang=it] { display : none }
+      *[lang=es] { display : none }
+      *[lang=fr] { display : none }
+	</style>
+
+  <p style="text-align: center;">
+    <a class="a" href="#" onclick="langChange('en')">English</a>
+    <a class="a" href="#" onclick="langChange('it')">Italiano</a>
+    <a class="a" href="#" onclick="langChange('es')">Español</a>
+    <a class="a" href="#" onclick="langChange('fr')">Français</a>
+  </p>
+
+  <br>
+
+  <h4 class="custom">
+    <span lang="en">Advertising is never enough, right?</span>
+    <span lang="it">La pubblicità non è mai abbastanza, vero?</span>
+    <span lang="es">La publicidad nunca es suficiente, ¿verdad?</span>
+    <span lang="fr">La publicité ne suffit jamais, non?</span>
+  </h4>
+
+  <br>
+
+  <h5 class="custom" style="margin: 0 20px 20px; padding: 3px 8px;">
+    <span lang="en"><u>One year of advertising for a good cause.</u><br>Take a look below to see how it works and if you want you can read my own story as well. Thanks for your time.</span>
+    <span lang="it"><u>Un anno di pubblicità per una giusta causa.</u><br>Date un'occhiata qui sotto per vedere come funziona, se vi fa piacere potete leggere anche la mia storia. Grazie per il vostro tempo.</span>
+    <span lang="es"><u>Un año de publicidad por una buena causa.</u><br>Eche un vistazo a continuación para ver cómo funciona y, si lo desea, también puede leer mi propia historia. Gracias por tu tiempo.</span>
+    <span lang="fr"><u>Un an de publicité pour une bonne cause.</u><br>Jetez un oeil ci-dessous pour voir comment cela fonctionne et si vous le souhaitez, vous pouvez également lire mon histoire. Merci pour votre temps.</span>
+  </h5>
+
+  <br>
+
+  <input type="radio" class="radio" name="progress" value="onehundred" onclick="hideandshow(0)" id="currentBar" checked>
+  <label for="currentBar" class="label">
+    <span lang="en">Goal steps raised<br>1%</span>
+    <span lang="it">Goal steps raccolti<br>1%</span>
+    <span lang="es">Goal steps recaudados<br>1%</span>
+    <span lang="fr">Goal steps levés<br>1%</span>
+  </label>
+
+  <input type="radio" class="radio" name="progress" value="onehundred" onclick="hideandshow(1)" id="goalBar">
+  <label for="goalBar" class="label">
+    <span lang="en">What is the goal?<br>100% <svg id="icon-notification" class="notification" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z" />
+    </svg></span>
+    <span lang="it">Qual è l'obiettivo?<br>100% <svg id="icon-notification" class="notification" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z" />
+    </svg></span>
+    <span lang="es">Cual es el objetivo?<br>100% <svg id="icon-notification" class="notification" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z" />
+    </svg></span>
+    <span lang="fr">Quel est le but?<br>100% <svg id="icon-notification" class="notification" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z" />
+    </svg></span>
+  </label>
+
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <br>
+
+  <label id="toDisplay" class="hiddenLabel">
+    <span lang="en">99% more goal steps available</span>
+    <span lang="it">Altri 99% goal steps disponibili</span>
+    <span lang="es">99% goal steps más disponibles</span>
+    <span lang="fr">99% goal steps supplémentaires disponibles</span>
+  </label>
+
+  <br>
+
+  <!-- Word Cloud Chart -->
+  <div id="wordCloudChart" class"containerWordCloudChart">
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <script src="js/wordCloudChart.js"></script>
+  </div>
+
+  <br>
+
+  <!-- FAQ -->
+  <div class="containerFAQ" >
+  		<!-- Accordion Starts-->
+      <div class="acc">
+  			<h6 class="custom">
+          <span lang="en">How it works <svg id="icon-idea" class="idea" fill="red" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+                <path fill="#fff" d="m338.6,136.1c-23.6-22.7-54.6-34.4-87.4-33.2-62.9,2.5-114.2,55.7-114.4,118.7-0.1,27.9 9.7,55.1 27.6,76.5 25.8,31 40,70.1 40,110.2 0,0-2.7,18.4 10.4,18.4h82.4c13.4,0 10.4-18.4 10.4-18.4 0-39.2 14.4-78 41.7-112.2 16.9-21.3 25.9-46.9 25.9-74.1 0-32.7-13-63.3-36.6-85.9zm-5.6,147c-29.7,37.2-45.6,79.6-46.2,122.8h-61.6c-0.6-44.1-16.4-87-44.8-121.1-14.7-17.7-22.8-40.1-22.7-63.1 0.2-52 42.5-95.9 94.4-98 27.1-1 52.7,8.7 72.1,27.4 19.5,18.7 30.2,43.9 30.2,70.9-0.1,22.5-7.4,43.6-21.4,61.1z"/>
+                <path fill="#fff"  d="m297.6,440.9h-83.2c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h83.2c5.8,0 10.4-4.7 10.4-10.4 0-5.7-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m281.9,480.1h-51.7c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h51.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.7-10.4-10.4-10.4z"/>
+               <g class="blinking-light">
+                <path fill="#fff"  d="M256,67.7c5.8,0,10.4-4.7,10.4-10.4V21.4c0-5.8-4.7-10.4-10.4-10.4s-10.4,4.7-10.4,10.4v35.9    C245.6,63.1,250.2,67.7,256,67.7z"/>
+                <path fill="#fff"  d="m158.9,108c4.1-4.1 4.1-10.7 0-14.7l-25.4-25.4c-4.1-4.1-10.7-4.1-14.7,0s-4.1,10.7 0,14.7l25.4,25.4c4.1,4 10.7,4 14.7,0z"/>
+                <path fill="#fff"  d="m439.6,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m108.3,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.6-10.4-10.4-10.4z"/>
+                <path fill="#fff" d="m393.2,67.8c-4.1-4.1-10.7-4.1-14.7,0l-25.4,25.4c-4.1,4.1-4.1,10.7 0,14.7s10.7,4.1 14.7,0l25.4-25.4c4.1-4 4.1-10.6 0-14.7z"/>
+            </g>
+          </svg></span>
+          <span lang="it">Come funziona <svg id="icon-idea" class="idea" fill="red" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+                <path fill="#fff" d="m338.6,136.1c-23.6-22.7-54.6-34.4-87.4-33.2-62.9,2.5-114.2,55.7-114.4,118.7-0.1,27.9 9.7,55.1 27.6,76.5 25.8,31 40,70.1 40,110.2 0,0-2.7,18.4 10.4,18.4h82.4c13.4,0 10.4-18.4 10.4-18.4 0-39.2 14.4-78 41.7-112.2 16.9-21.3 25.9-46.9 25.9-74.1 0-32.7-13-63.3-36.6-85.9zm-5.6,147c-29.7,37.2-45.6,79.6-46.2,122.8h-61.6c-0.6-44.1-16.4-87-44.8-121.1-14.7-17.7-22.8-40.1-22.7-63.1 0.2-52 42.5-95.9 94.4-98 27.1-1 52.7,8.7 72.1,27.4 19.5,18.7 30.2,43.9 30.2,70.9-0.1,22.5-7.4,43.6-21.4,61.1z"/>
+                <path fill="#fff"  d="m297.6,440.9h-83.2c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h83.2c5.8,0 10.4-4.7 10.4-10.4 0-5.7-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m281.9,480.1h-51.7c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h51.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.7-10.4-10.4-10.4z"/>
+               <g class="blinking-light">
+                <path fill="#fff"  d="M256,67.7c5.8,0,10.4-4.7,10.4-10.4V21.4c0-5.8-4.7-10.4-10.4-10.4s-10.4,4.7-10.4,10.4v35.9    C245.6,63.1,250.2,67.7,256,67.7z"/>
+                <path fill="#fff"  d="m158.9,108c4.1-4.1 4.1-10.7 0-14.7l-25.4-25.4c-4.1-4.1-10.7-4.1-14.7,0s-4.1,10.7 0,14.7l25.4,25.4c4.1,4 10.7,4 14.7,0z"/>
+                <path fill="#fff"  d="m439.6,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m108.3,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.6-10.4-10.4-10.4z"/>
+                <path fill="#fff" d="m393.2,67.8c-4.1-4.1-10.7-4.1-14.7,0l-25.4,25.4c-4.1,4.1-4.1,10.7 0,14.7s10.7,4.1 14.7,0l25.4-25.4c4.1-4 4.1-10.6 0-14.7z"/>
+            </g>
+          </svg></span>
+          <span lang="es">Como funciona <svg id="icon-idea" class="idea" fill="red" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+                <path fill="#fff" d="m338.6,136.1c-23.6-22.7-54.6-34.4-87.4-33.2-62.9,2.5-114.2,55.7-114.4,118.7-0.1,27.9 9.7,55.1 27.6,76.5 25.8,31 40,70.1 40,110.2 0,0-2.7,18.4 10.4,18.4h82.4c13.4,0 10.4-18.4 10.4-18.4 0-39.2 14.4-78 41.7-112.2 16.9-21.3 25.9-46.9 25.9-74.1 0-32.7-13-63.3-36.6-85.9zm-5.6,147c-29.7,37.2-45.6,79.6-46.2,122.8h-61.6c-0.6-44.1-16.4-87-44.8-121.1-14.7-17.7-22.8-40.1-22.7-63.1 0.2-52 42.5-95.9 94.4-98 27.1-1 52.7,8.7 72.1,27.4 19.5,18.7 30.2,43.9 30.2,70.9-0.1,22.5-7.4,43.6-21.4,61.1z"/>
+                <path fill="#fff"  d="m297.6,440.9h-83.2c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h83.2c5.8,0 10.4-4.7 10.4-10.4 0-5.7-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m281.9,480.1h-51.7c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h51.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.7-10.4-10.4-10.4z"/>
+               <g class="blinking-light">
+                <path fill="#fff"  d="M256,67.7c5.8,0,10.4-4.7,10.4-10.4V21.4c0-5.8-4.7-10.4-10.4-10.4s-10.4,4.7-10.4,10.4v35.9    C245.6,63.1,250.2,67.7,256,67.7z"/>
+                <path fill="#fff"  d="m158.9,108c4.1-4.1 4.1-10.7 0-14.7l-25.4-25.4c-4.1-4.1-10.7-4.1-14.7,0s-4.1,10.7 0,14.7l25.4,25.4c4.1,4 10.7,4 14.7,0z"/>
+                <path fill="#fff"  d="m439.6,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m108.3,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.6-10.4-10.4-10.4z"/>
+                <path fill="#fff" d="m393.2,67.8c-4.1-4.1-10.7-4.1-14.7,0l-25.4,25.4c-4.1,4.1-4.1,10.7 0,14.7s10.7,4.1 14.7,0l25.4-25.4c4.1-4 4.1-10.6 0-14.7z"/>
+            </g>
+          </svg></span>
+          <span lang="fr">Comment ça marche <svg id="icon-idea" class="idea" fill="red" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+                <path fill="#fff" d="m338.6,136.1c-23.6-22.7-54.6-34.4-87.4-33.2-62.9,2.5-114.2,55.7-114.4,118.7-0.1,27.9 9.7,55.1 27.6,76.5 25.8,31 40,70.1 40,110.2 0,0-2.7,18.4 10.4,18.4h82.4c13.4,0 10.4-18.4 10.4-18.4 0-39.2 14.4-78 41.7-112.2 16.9-21.3 25.9-46.9 25.9-74.1 0-32.7-13-63.3-36.6-85.9zm-5.6,147c-29.7,37.2-45.6,79.6-46.2,122.8h-61.6c-0.6-44.1-16.4-87-44.8-121.1-14.7-17.7-22.8-40.1-22.7-63.1 0.2-52 42.5-95.9 94.4-98 27.1-1 52.7,8.7 72.1,27.4 19.5,18.7 30.2,43.9 30.2,70.9-0.1,22.5-7.4,43.6-21.4,61.1z"/>
+                <path fill="#fff"  d="m297.6,440.9h-83.2c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h83.2c5.8,0 10.4-4.7 10.4-10.4 0-5.7-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m281.9,480.1h-51.7c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h51.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.7-10.4-10.4-10.4z"/>
+               <g class="blinking-light">
+                <path fill="#fff"  d="M256,67.7c5.8,0,10.4-4.7,10.4-10.4V21.4c0-5.8-4.7-10.4-10.4-10.4s-10.4,4.7-10.4,10.4v35.9    C245.6,63.1,250.2,67.7,256,67.7z"/>
+                <path fill="#fff"  d="m158.9,108c4.1-4.1 4.1-10.7 0-14.7l-25.4-25.4c-4.1-4.1-10.7-4.1-14.7,0s-4.1,10.7 0,14.7l25.4,25.4c4.1,4 10.7,4 14.7,0z"/>
+                <path fill="#fff"  d="m439.6,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.7-10.4-10.4-10.4z"/>
+                <path fill="#fff"  d="m108.3,194.6h-35.9c-5.8,0-10.4,4.7-10.4,10.4s4.7,10.4 10.4,10.4h35.9c5.8,0 10.4-4.7 10.4-10.4s-4.6-10.4-10.4-10.4z"/>
+                <path fill="#fff" d="m393.2,67.8c-4.1-4.1-10.7-4.1-14.7,0l-25.4,25.4c-4.1,4.1-4.1,10.7 0,14.7s10.7,4.1 14.7,0l25.4-25.4c4.1-4 4.1-10.6 0-14.7z"/>
+            </g>
+          </svg></span>
+        </h6>
+  			<div class="content">
+  				<div class="content-inner" style="text-align: justify">
+            <p class="custom">
+              <span lang="en">Everything is based on what I call "goal steps" which are online advertising spaces for sale. Now you may be wondering, why should I buy them? Because in return not only will you receive a full year of advertising on this site, but your contribution will be of great help to help me continue my studies and give me the opportunity to create my career for which I am working hard. A chance to buy a low-cost advertising space for you and a nice way to avoid depending economically on my parents during my study period, don’t you think? How does it work? Very simple, the number of goal steps on sale is limited, the greater the number you will purchase, the greater the visibility you will get in the chart  and all  my thanks will go to you (if you want to learn more about how a word cloud chart works, see the picture here at the bottom or click <a href="https://en.wikipedia.org/wiki/Tag_cloud">here</a>). Do not worry, at the bottom of the site I will insert a list of thanks with the names of each of you and the related links to your site, so everyone, even those who will buy even a single goal step, will have guaranteed visibility. You can check how many goal steps remain by simply clicking on "What is the goal" in the top bar of this site. Why the chart? Because a bit of competitiveness makes it much more exciting!</span>
+              <span lang="it">Tutto si basa su quelli che io chiamo "goal steps" i quali sono spazi pubblicitari online in vendita. Ora vi starete chiedendo, perché mai dovrei acquistarli? Perché in cambio non solo riceverete un intero anno di pubblicità su questo sito, ma il vostro contributo sarà di fondamentale aiuto per aiutarmi a continuare gli studi e darmi la possibilità di crearmi la carriera per la quale sto lavorando duramente. Una possibilità di acquistare uno spazio pubblicitario a basso costo per voi e un modo carino per non gravare più economicamente sui genitori per me, non trovate? Come funziona? Molto semplice, il numero di goal steps in vendita è limitato, maggiore sarà il numero da voi acquistato, maggiore sarà la visibilità che otterrete all'interno del grafico e maggiore sarà il mio ringraziamento nei vostri confronti (se volete approfondire il funzionamento di un word cloud chart guardate la foto qui in fondo o cliccate
+              <a href="https://it.wikipedia.org/wiki/Nuvola_di_etichette">qui</a>). Non temete, in fondo al sito inserirò una lista di ringraziamenti con i nomi di ognuno di voi e i relativi collegamenti al vostro sito, quindi tutti, anche coloro che acquisteranno anche un solo goal step, avranno visibilità garantita. Potete controllare quanti goal steps rimangono semplicemente cliccando su "Qual è l'obiettivo" nella barra superiore di questo sito. Il perché del grafico? Perché un po' di competitività rende la cosa molto più entusiasmante!</span>
+              <span lang="es">Todo se basa en lo que llamo "goal steps", que son espacios publicitarios en línea para la venta. Ahora puede que se pregunte, ¿por qué debería comprarlos? Porque a cambio no solo recibirás un año completo de publicidad en este sitio, sino que tu contribución será de ayuda fundamental para ayudarme a continuar mis estudios y darme la oportunidad de crear mi carrera por la cual estoy trabajando duro. Una oportunidad de comprar un espacio publicitario de bajo costo para usted y una buena manera de evitar sobrecargar económicamente a mis padres, ¿no es así? Como funciona? Muy simple, el número de pasos de objetivo en la venta es limitado, cuanto mayor sea el número que compró, mayor será la visibilidad que obtendrá dentro del gráfico y mayor será mi agradecimiento a usted (si desea obtener más información sobre cómo funciona esto gráfico mire la imagen aquí en la parte inferior o haga clic
+              <a href="https://es.wikipedia.org/wiki/Nube_de_palabras">aquí</a>). No se preocupe, en la parte inferior del sitio insertaré una lista de agradecimientos con los nombres de cada uno de ustedes y los enlaces relacionados a su sitio, para que todos, incluso aquellos que compren un solo goal step, tengan garantizada la visibilidad. Puede verificar cuántos goal steps quedan simplemente haciendo clic en "Cuál es el objetivo" en la barra superior de este sitio. ¿Por qué de la tabla? ¡Porque un poco de competitividad lo hace mucho más emocionante!</span>
+              <span lang="fr">Tout est basé sur ce que j'appelle des "goal steps" qui sont des espaces publicitaires en ligne à vendre. Maintenant, vous vous demandez peut-être, pourquoi devrais-je les acheter? En retour, non seulement vous recevrez une année complète de publicité sur ce site, mais votre contribution sera d'une aide fondamentale pour m'aider à poursuivre mes études et me donner l'occasion de créer ma carrière pour laquelle je travaille dur. Une chance d'acheter un espace publicitaire à faible coût pour vous et un moyen agréable d'éviter de surcharger plus économiquement mes parents, n'est-ce pas? Comment ça marche? Très simple, les goal steps en vente sont limitées, plus les steps que vous avez acheté est important, plus vous aurez de visibilité dans le graphique et plus je vous remercie (si vous voulez en savoir plus sur son fonctionnement de graphique regardez la photo ici en bas ou cliquez
+              <a href="https://fr.wikipedia.org/wiki/Nuage_de_mots-cl%C3%A9s">ici</a>). Ne vous inquiétez pas, je vais insérer une liste de remerciements avec les noms de chacun d'entre vous et les liens associés à votre site au bas du site. Ainsi, tout le monde, même ceux qui achèteront même un seul step, aura une visibilité garantie. Vous pouvez vérifier le nombre de goal steps restantes en cliquant simplement sur «Quel est le but?» dans la barre du haut de ce site. Le pourquoi de la carte? Parce qu'un peu de compétitivité le rend beaucoup plus excitant!</span>
+            </p>
+            <img src="./img/wordCloudChart.png" style="display: block; margin-left: auto; margin-right: auto; width: 90%;"></img>
+            <br>
+  				</div>
+  			</div>
+  		</div>
+      <div class="acc">
+  			<h6 class="custom">
+          <span lang="en">Why this initiative?</span>
+          <span lang="it">Perché questa iniziativa?</span>
+          <span lang="es">¿Por qué esta iniciativa?</span>
+          <span lang="fr">Pourquoi cette initiative?</span>
+        </h6>
+  			<div class="content">
+  				<div class="content-inner" style="text-align: justify">
+            <p class="custom">
+              <span lang="en">With this strictly personal crowdfunding campaign, I don't want to push through the idea of ​​a request for charity or a desperate search for a non-repayable loan, they have always taught me that you can't ask for anything if you don't give something back before. With this initiative I tried to make the most of my knowledge to try to offer something practical and useful, in the hope of improving my position. Clearly I am aware that companies like yours have very respectable advertising and marketing channels and that the return you will get from this site is not comparable to everything but I trust that you will appreciate the effort made by a university student who has decided to code all night  long, lines on lines of code, to try to emerge in this world that seems to always favor the more affluent  instead of the most deserving.
+              How will I use the funds that will be collected? Well I consider myself an honest person and I will be happy to explain it to you below, in my story.</span>
+              <span lang="it">Con questa campagna crowdfunding strettamente personale non voglio far passare l'idea di una richiesta di carità o di una disperata ricerca di un finanziamento a fondo perduto, mi hanno sempre insegnato che non si può chiedere niente se prima non si dà qualcosa in cambio. Con questa iniziativa ho cercato di sfruttare al meglio le mie conoscenze per cercare di offrire qualcosa di pratico e utile, nella speranza di migliorare la mia posizione. Chiaramente sono a conoscenza che aziende come le vostre hanno canali pubblicitari e di marketing di tutto rispetto e che il ritorno che otterrete da questo sito non è paragonabile a tutto ciò però confido nel fatto che apprezzerete lo sforzo fatto da uno studente universitario che si è deciso a programmare tutta la notte linee di codice su linee di codice per cercare di emergere in questo mondo che sembra favorire sempre i più benestanti a discapito dei più meritevoli.
+              Per quanto riguarda l'utilizzo dei fondi che verranno raccolti, beh mi reputo una persona onesta e sarò lieto di spiegarvelo qui sotto, nella mia storia.
+              </span>
+              <span lang="es">Con esta campaña de crowdfunding estrictamente personal, no quiero impulsar la idea de una solicitud de caridad o una búsqueda desesperada de un préstamo no reembolsable, siempre me han enseñado que no puede pedir nada si no devuelve algo antes. Con esta iniciativa traté de aprovechar al máximo mi conocimiento para intentar ofrecer algo práctico y útil, con la esperanza de mejorar mi posición. Claramente, soy consciente de que compañías como la suya tienen canales de publicidad y marketing muy respetables y que el rendimiento que obtendrá de este sitio no es comparable a todo, pero confío en que apreciará el esfuerzo realizado por un estudiante universitario que ha decidido tabajar toda la noche en este sitio para tratar de emerger en este mundo que parece favorecer siempre a los más ricos a expensas de los más merecedores.
+              En cuanto al uso de los fondos que se recaudarán, bueno, me considero una persona honesta y me complacerá explicárselo a continuación, en mi historia.</span>
+              <span lang="fr">Avec cette campagne de crowdfunding strictement personnelle, je ne veux pas imposer l'idée d'une demande de charité ou d'une recherche désespérée d'un prêt non remboursable, ils m'ont toujours appris que vous ne pouvez rien demander si vous ne donnez rien avant. Avec cette initiative, j'ai essayé de tirer le meilleur parti de mes connaissances pour essayer d'offrir quelque chose de concret et d'utile, dans l'espoir d'améliorer ma position. Clairement, je suis conscient que des entreprises comme la vôtre disposent de canaux de publicité et de marketing très respectables et que le retour que vous obtiendrez de ce site n’est pas comparable à tout, mais j’espère que vous apprécierez les efforts fournis par un étudiant universitaire qui a décidé travailler toute la nuit sur ce site pour essayer d'émerger dans ce monde qui semble toujours favoriser les plus fortunés aux dépens des plus méritants.
+              En ce qui concerne l'utilisation des fonds qui seront collectés, eh bien je me considère une personne honnête et je me ferai un plaisir de vous l'expliquer ci-dessous, dans mon histoire.</span>
+            </p>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="acc">
+  			<h6 class="custom">
+          <span lang="en">My story</span>
+          <span lang="it">La mia storia</span>
+          <span lang="es">Mi historia</span>
+          <span lang="fr">Mon histoire</span>
+        </h6>
+  			<div class="content">
+  				<div class="content-inner" style="text-align: justify">
+  					<p class="custom">
+              <span lang="en">My name is Mattia Baldinazzo and I am 24 years old. I was born and raised in a small town near Vicenza, Veneto, Italy. From high school I fantasized with my classmates about how great it would be to be able to become a great entrepreneur one day, you know, to be able to really change things. The others dreamed of becoming footballers, I dreamed of becoming an entrepreneur. When I finished high school, I enrolled at the university, I became passionate about economics and I said to myself "Whatever you realize, you will need to know how to sell it!". I immediately became passionate about the Marketing branch and now, at the end of my three-year degree, I find myself having to choose a master's degree. The first problem arises here. I come from a family that certainly isn’t flush with cash but they never made me miss anything and I'm grateful for that. However like every good son I have always tried to find some jobs to round up and try not to put  a huge financial burden on my family, I don't know what the situation is like elsewhere, but  from where I come from it is damn hard to find jobs for university students! I started to accumulate my first, limited, revenue for two main reasons. Realize my dream, to create a company of my own and be able to move and graduate in the city I love, New York. Now you can imagine the slap in the face that I took when I realized how expensive American universities are. My idea is to create a good future for me, not to ruin my family to realize my dreams. Yes, we are talking about dreams, when we are small they teach us to believe it and when we grow up, even if they do not tell us clearly we realize that every obstacle seems to want to tell you "You have to stop here, besides you can't go". The most determined (I am proud to be part of it) know that many obstacles can be overcome with determination and the desire to get involved. Unfortunately, there are some that represent an insurmountable wall on which our dreams break. I refuse to believe that only someone, the most well-off, can afford a better education, I refuse to believe that  just because they can count on an almost unlimited family financial coverage they can one day create a company and realize a dream that is also my dream. I don't know if this project can really help me and serve as a springboard for my career or if it will be a complete failure, but one thing I know for sure, I have no intention of stopping even in the face of all this , I'm not going to close my dreams in a drawer, I'm going to find the right way and make them come true, I am determined to become a great entrepreneur. To all those who want to contribute, I dedicate my greatest thanks. Thanks again for your time, a warm embrace, Mattia.</span>
+              <span lang="it">Mi chiamo Mattia Baldinazzo e ho 24 anni. Sono nato e cresciuto in una piccola cittadina vicino Vicenza, Veneto, Italia. Fin dalle scuole superiori fantasticavo con i miei compagni su quanto sarebbe stato fantastico riuscire a diventare un grande imprenditore un giorno, voi lo sapete, poter cambiare veramente le cose. Gli altri sognavano di fare i calciatori, io l'imprenditore. Finite le scuole superiori mi sono iscritto all'università, mi sono appassionato di economia e mi sono sono detto tra me e me "Qualsiasi cosa realizzerai, sarà necessario saperla vendere!", vendere bene aggiungerei. Mi sono subito appassionato al ramo del Marketing e oggi ormai al termine della mia laurea triennale mi trovo a dover scegliere una laurea magistrale. Qui mi si pone il primo problema. Provengo da una famiglia mediamente benestante, non navighiamo certo nell'oro ma non mi hanno mai fatto mancare nulla e di questo sono grato. Tuttavia come ogni bravo figlio ho sempre cercato di trovare qualche lavoretto per arrotondare e cercare di non pesare economicamente sulle finanze della mia famiglia, non so come sia la situazione altrove, ma dalle mie parti è dannatamente difficile trovare dei lavoretti per universitari! Ho iniziato ad accumulare le mie prime, seppur limitate, entrate per due principali motivi. Realizzare il mio sogno, come ormai avrete ben intuito di creare un'azienda tutta mia e riuscire a trasferirmi e laurearmi nella città che amo, New York. Ora potete immaginare lo schiaffo in faccia che ho preso quando ho realizzato quanto costose siano le università americane. La mia idea è quella di crearmi un buon futuro, non quella di mandare in rovina la mia famiglia per assecondare i miei sogni. Proprio di sogni stiamo parlando, quando siamo piccoli ci insegnano a crederci e quando cresciamo, anche se non ce lo dicono chiaramente realizziamo che ogni ostacolo sembra volerti dire "Tu devi fermarti qui, oltre non puoi andare". I più determinati (sono orgoglioso di farne parte) sanno che molti ostacoli possono essere superati con la determinazione e la voglia di mettersi in gioco. Purtroppo ce ne sono alcuni che rappresentano un muro invalicabile, addosso al quale i nostri sogni si infrangono. Mi rifiuto di credere che solo alcuni, i più agiati, possano permettersi un'istruzione migliore, mi rifiuto di credere che loro, solo perché possono contare su una copertura economica familiare pressapoco illimitata possano un giorno creare un'azienda e realizzare un sogno che in fondo è anche in parte mio. Al momento in cui scrivo tutto questo non so se questo progetto potrà realmente essermi d'aiuto e servirmi da trampolino di lancio o se sarà un completo fallimento, ma una cosa la so per certo, non ho intenzione di fermarmi neanche di fronte a tutto ciò, non ho intenzione di chiudere questi miei sogni in un cassetto, ho intenzione di trovare la strada giusta e di realizzarli, sono determinato a diventare un grande imprenditore. A tutti coloro che vorranno contribuire io dedico il mio più grande ringraziamento. Grazie ancora per il vostro tempo, un abbraccio caloroso, Mattia.</span>
+              <span lang="es">Mi nombre es Mattia Baldinazzo y tengo 24 años. Nací y crecí en un pequeño pueblo cerca de Vicenza, Véneto, Italia. Desde la escuela secundaria fantaseé con mis compañeros sobre lo maravilloso que sería ser un gran emprendedor algún día, ya sabes, poder cambiar realmente las cosas. Los otros soñaban con convertirse en futbolistas, yo el emprendedor. Cuando terminé la escuela secundaria, me inscribí en la universidad, me apasionó la economía y me dije a mí mismo "¡Lo que sea que sepas, necesitarás saber cómo venderlo!". Inmediatamente me apasioné por la rama de Marketing y hoy, al final de mi carrera de tres años, me encuentro teniendo que elegir una maestría. El primer problema surge aquí. Vengo de una familia que no nada en oro, pero nunca me hicieron extrañar nada y estoy agradecido por eso. Sin embargo, como todo buen hijo, siempre he tratado de encontrar algunos trabajos para redondear y tratar de no pesar económicamente sobre las finanzas de mi familia, no sé cómo es la situación en otros lugares, ¡pero en mi parte es muy difícil encontrar trabajo para estudiantes universitarios! Comencé a acumular mis primeros ingresos, aunque limitados, por dos razones principales. Realice mi sueño, crear una compañía propia y poder mudarse y graduarse en la ciudad que amo, Nueva York. Ahora puedes imaginar la bofetada que recibí cuando me di cuenta de lo caras que son las universidades estadounidenses. Mi idea es crear un buen futuro para mí, no arruinar a mi familia para satisfacer mis sueños. Estamos hablando de sueños, cuando somos pequeños nos enseñan a creerlo y cuando crecemos, incluso si no nos lo dicen claramente, nos damos cuenta de que cada obstáculo parece querer decirte "Tienes que detenerte aquí, además no puedes ir". Los más decididos (estoy orgulloso de ser parte de esto) saben que muchos obstáculos pueden superarse con determinación y el deseo de involucrarse. Desafortunadamente, hay algunos que representan un muro insuperable en el que se rompen nuestros sueños. Me niego a creer que solo algunos, los más acomodados, puedan permitirse una mejor educación, me niego a creer que, solo porque pueden contar con una cobertura financiera familiar casi ilimitada, algún día puedan crear una empresa y hacer realidad un sueño que en fondo también es en parte mío. Al momento de escribir todo esto, no sé si este proyecto realmente puede ayudarme y servir como trampolín para mi carrera o si será un completo fracaso, pero una cosa que sé con certeza es que no tengo intención de detenerme incluso ante todo esto, no voy a cerrar mis sueños en un cajón, voy a encontrar el camino correcto y hacerlos realidad, estoy decidido a convertirme en un gran emprendedor. A todos aquellos que quieran contribuir, les dedico mi mayor agradecimiento. Gracias de nuevo por tu tiempo, un cálido abrazo, Mattia.</span>
+              <span lang="fr">Je m'appelle Mattia Baldinazzo et j'ai 24 ans. Je suis né et j'ai grandi dans une petite ville près de Vicenza, en Vénétie, en Italie. Dès le lycée, j'ai fantasmé avec mes camarades de classe sur le fait qu'il serait formidable de devenir un grand entrepreneur un jour, vous savez, pour pouvoir vraiment changer les choses. Les autres rêvaient de devenir footballeurs, moi un entrepreneur. Quand j'ai fini le lycée, je me suis inscrit à l'université, je suis devenu passionné d'économie et je me suis dit: "Quoi que vous réalisiez, vous aurez besoin de savoir comment le vendre!". Je me suis immédiatement passionné pour la branche marketing et aujourd'hui, à la fin de mes trois années d'études, je dois choisir un master. Le premier problème se pose ici. Je viens d'une famille famille normale, certainement pas riche, mais ils ne m'ont jamais fait rater rien et je suis reconnaissant pour cela. Cependant, comme chaque bon fils, j’ai toujours essayé de trouver un emploi pour arrondir et d’essayer de ne pas peser économiquement sur les finances de ma famille, je ne sais pas ce qu’est la situation ailleurs, mais pour ma part, il est sacrément difficile de trouver du travail pour les étudiants universitaires! J'ai commencé à accumuler mon premier revenu, bien que limité, pour deux raisons principales. Réalisez mon rêve, car vous aurez maintenant une bonne intuition pour créer une entreprise à moi et pouvoir déménager et obtenir un diplôme dans la ville que j'aime, New York. Maintenant, vous pouvez imaginer la gifle que j'ai prise lorsque j'ai réalisé à quel point les universités américaines sont chères. Mon idée est de créer un bon avenir pour moi, de ne pas ruiner ma famille pour satisfaire mes rêves. Nous parlons de rêves, quand nous sommes petits, ils nous apprennent à le croire et quand nous grandissons, même s'ils ne nous le disent pas clairement, nous réalisons que chaque obstacle semble vouloir vous dire "Vous devez vous arrêter ici, vous ne pouvez pas y aller". Les plus déterminés (je suis fier d’en faire partie) savent que de nombreux obstacles peuvent être surmontés avec détermination et désir de s’impliquer. Malheureusement, certains représentent un mur insurmontable sur lequel nos rêves se brisent. Je refuse de croire que seuls certains, les plus nantis, peuvent se permettre une meilleure éducation, je refuse de croire que, simplement parce qu'ils peuvent compter sur une couverture financière familiale quasi illimitée, ils peuvent un jour créer une entreprise et réaliser un rêve qui à la fin est aussi le mien. Au moment de la rédaction de tout cela, je ne sais pas si ce projet peut vraiment m'aider et me servir de tremplin pour ma carrière ou s'il s'agira d'un échec total, mais je suis sûr que je n'ai aucune intention de m'arrêter, malgré tout cela. Je ne vais pas fermer mes rêves dans un tiroir, je vais trouver le bon chemin et les réaliser, je suis déterminé à devenir un grand entrepreneur. À tous ceux qui veulent contribuer, je dédie mes plus grands remerciements. Merci encore pour votre temps, un câlin chaleureux, Mattia.</span>
+            </p>
+  				</div>
+  		</div>
+    	</div>
+  </div>
+
+  <div class="containerFAQ">
+    <p class="custom" style="text-align: center;">
+    <span lang="en">The cost of a goal step is 10$, you can buy them through <a href="https://paypal.me/mattiabaldinazzo">paypal.me/mattiabaldinazzo</a>, please remember to indicate in the description the amount of goal steps you are interested in purchasing and your name or the name of your company so I can keep track of them, for further information do not hesitate to contact me at <a href="mailto: mattiabaldinazzoproject@gmail.com">mattiabaldinazzoproject@gmail.com</a>. Attention, if you want to get more than 50 goal steps, please contact me first as PayPal does not allow high-value transactions and in this case I will provide you with an alternative method, thanks.</span>
+    <span lang="it">Il costo di un goal step è di 10€, potete aggiudicarveli tramite <a href="https://paypal.me/mattiabaldinazzo">paypal.me/mattiabaldinazzo</a>, ricordate di indicare nella descrizione la quantità di goal steps che siete interessati ad acquistare e il vostro nome o il nome della vostra azienda così potrò tenerne traccia, per ulteriori informazioni non esitate a contattarmi all'indirizzo <a href="mailto: mattiabaldinazzoproject@gmail.com">mattiabaldinazzoproject@gmail.com</a>. Attenzione, se siete intenzionati ad aggiudicarvi più di 50 goal steps vi prego di contattarmi prima in quanto PayPal non permette di transazioni di importi elevati e in tal caso vi fornirò un metodo alternativo, grazie.</span>
+    <span lang="es">El costo de un goal step es de 10€, puede comprarlos a través de <a href="https://paypal.me/mattiabaldinazzo">paypal.me/mattiabaldinazzo</a>, recuerde indicar en la descripción la cantidad de goal steps que está interesado en comprar y tu nombre o el nombre de tu empresa para que pueda realizar un seguimiento de ellos, para obtener más información, no dude en ponerse en contacto conmigo en
+      <a href="mailto: mattiabaldinazzoproject@gmail.com">mattiabaldinazzoproject@gmail.com</a>. Atención, si desea obtener más de 50 goal steps, póngase en contacto conmigo primero ya que PayPal no permite transacciones de alto valor y en este caso le proporcionaré un método alternativo, gracias.</span>
+    <span lang="fr">Le coût d'un goal step est de 10€, vous pouvez l'acheter via <a href="https://paypal.me/mattiabaldinazzo">paypal.me/mattiabaldinazzo</a>, n'oubliez pas d'indiquer dans la description le nombre de goal steps que vous souhaitez acheter et votre nom ou le nom de votre entreprise afin que je puisse les suivre, pour plus d'informations, n'hésitez pas à me contacter à l'adresse <a href="mailto: mattiabaldinazzoproject@gmail.com">mattiabaldinazzoproject@gmail.com</a><br>. Attention, si vous souhaitez obtenir plus de 50 goal steps, contactez-moi d'abord, car PayPal n'autorise pas les transactions de grande valeur. Dans ce cas, je vous fournirai une méthode alternative, merci.</span>
+    </p>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+        $(document).ready(function(){
+  	       $('.acc h6').click(function(){
+  		         $(this).next('.content').slideToggle();
+  		         $(this).parent().toggleClass('active');
+  		         $(this).parent().siblings().children('.content').slideUp();
+  		         $(this).parent().siblings().removeClass('active');
+  	       });
+        });
+  </script>
+
+  <div>
+    <!-- Sezione con la lista delle aziende -->
+    <dl class="dl">
+      <dt>
+        <h5 class="custom" style="text-align: left; padding: 0;">
+        <span lang="en">Special thanks <svg version="1.1" id="icon-hearbeat" class="heart" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;"
+                  xml:space="preserve">
+                  <path d="M369.75,21.675c-43.35,0-86.7,20.4-114.75,53.55c-28.05-33.15-71.4-53.55-114.75-53.55C61.2,21.675,0,82.875,0,161.925
+                        c0,96.9,86.7,175.95,219.3,293.25l35.7,33.15l35.7-33.15c130.05-119.85,219.3-198.9,219.3-293.25
+                        C510,82.875,448.8,21.675,369.75,21.675z M257.55,419.475H255l-2.55-2.55C130.05,307.274,51,235.875,51,161.925
+                        c0-51,38.25-89.25,89.25-89.25c38.25,0,76.5,25.5,91.8,61.2h48.45c12.75-35.7,51-61.2,89.25-61.2c51,0,89.25,38.25,89.25,89.25
+                        C459,235.875,379.95,307.274,257.55,419.475z" />
+        </svg></span>
+        <span lang="it">Un ringraziamento particolare <svg version="1.1" id="icon-hearbeat" class="heart" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;"
+                  xml:space="preserve">
+                  <path d="M369.75,21.675c-43.35,0-86.7,20.4-114.75,53.55c-28.05-33.15-71.4-53.55-114.75-53.55C61.2,21.675,0,82.875,0,161.925
+                        c0,96.9,86.7,175.95,219.3,293.25l35.7,33.15l35.7-33.15c130.05-119.85,219.3-198.9,219.3-293.25
+                        C510,82.875,448.8,21.675,369.75,21.675z M257.55,419.475H255l-2.55-2.55C130.05,307.274,51,235.875,51,161.925
+                        c0-51,38.25-89.25,89.25-89.25c38.25,0,76.5,25.5,91.8,61.2h48.45c12.75-35.7,51-61.2,89.25-61.2c51,0,89.25,38.25,89.25,89.25
+                        C459,235.875,379.95,307.274,257.55,419.475z" />
+        </svg></span>
+        <span lang="es">Agradecimiento especial <svg version="1.1" id="icon-hearbeat" class="heart" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;"
+                  xml:space="preserve">
+                  <path d="M369.75,21.675c-43.35,0-86.7,20.4-114.75,53.55c-28.05-33.15-71.4-53.55-114.75-53.55C61.2,21.675,0,82.875,0,161.925
+                        c0,96.9,86.7,175.95,219.3,293.25l35.7,33.15l35.7-33.15c130.05-119.85,219.3-198.9,219.3-293.25
+                        C510,82.875,448.8,21.675,369.75,21.675z M257.55,419.475H255l-2.55-2.55C130.05,307.274,51,235.875,51,161.925
+                        c0-51,38.25-89.25,89.25-89.25c38.25,0,76.5,25.5,91.8,61.2h48.45c12.75-35.7,51-61.2,89.25-61.2c51,0,89.25,38.25,89.25,89.25
+                        C459,235.875,379.95,307.274,257.55,419.475z" />
+        </svg></span>
+        <span lang="fr">Merci spécial <svg version="1.1" id="icon-hearbeat" class="heart" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;"
+                  xml:space="preserve">
+                  <path d="M369.75,21.675c-43.35,0-86.7,20.4-114.75,53.55c-28.05-33.15-71.4-53.55-114.75-53.55C61.2,21.675,0,82.875,0,161.925
+                        c0,96.9,86.7,175.95,219.3,293.25l35.7,33.15l35.7-33.15c130.05-119.85,219.3-198.9,219.3-293.25
+                        C510,82.875,448.8,21.675,369.75,21.675z M257.55,419.475H255l-2.55-2.55C130.05,307.274,51,235.875,51,161.925
+                        c0-51,38.25-89.25,89.25-89.25c38.25,0,76.5,25.5,91.8,61.2h48.45c12.75-35.7,51-61.2,89.25-61.2c51,0,89.25,38.25,89.25,89.25
+                        C459,235.875,379.95,307.274,257.55,419.475z" />
+        </svg></span>
+        </h5>
+      </dt>
+      <dt class="dt"><a class="a" href="https://www.google.com">Family and friends</a></dt>
+      <dd class="custom">
+        <span lang="en">Donation of my family and my friends Anna, Matteo, Paolo and Letizia, Francesco, Andrea and Sara, thanks again!</span>
+        <span lang="it">Donazione della mia famiglia e dei miei amici Anna, Matteo, Paolo e Letizia, Francesco, Andrea e Sara, grazie ancora!</span>
+        <span lang="es">Donación de mi familia y mis amigos Anna, Matteo, Paolo y Letizia, Francesco, Andrea y Sara, ¡gracias de nuevo!</span>
+        <span lang="fr">Don de ma famille et mes amis Anna, Matteo, Paolo et Letizia, Francesco, Andrea et Sara, merci encore!</span>
+      </dd>
+    </dl>
+
+  </div>
+
+</div>
+
+</html>
